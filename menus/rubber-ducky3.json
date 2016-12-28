@@ -1,0 +1,34 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Encourage 3",
+        "command": "rubber-ducky3:encourage"
+      },
+      {
+        "label": "Respond 3",
+        "command": "rubber-ducky3:respond"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "Rubber Ducky 3",
+          "submenu": [
+            {
+              "label": "Encourage 3",
+              "command": "rubber-ducky3:encourage"
+            },
+            {
+              "label": "Respond 3",
+              "command": "rubber-ducky3:respond"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
