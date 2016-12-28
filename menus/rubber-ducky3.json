@@ -8,10 +8,6 @@
       {
         "label": "Respond 3",
         "command": "rubber-ducky3:respond"
-      },
-      {
-        "label": "Draw 3",
-        "command": "rubber-ducky3:draw"
       }
     ]
   },
@@ -29,10 +25,6 @@
             {
               "label": "Respond 3",
               "command": "rubber-ducky3:respond"
-            },
-            {
-              "label": "Draw 3",
-              "command": "rubber-ducky3:draw"
             }
           ]
         }

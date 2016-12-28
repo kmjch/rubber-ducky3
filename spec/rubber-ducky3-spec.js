@@ -16,9 +16,8 @@ describe('RubberDucky3', () => {
   });
 
   describe('when the rubber-ducky3:respond event is triggered', () => {
-    it('hides and shows the modal panel', () => {
-      // Before the activation event the view is not on the DOM, and no panel
-      // has been created
+    it('inserts some text', () => {
+      // Before the activation event, there may not be any text
       expect(workspaceElement.querySelector('.rubber-ducky3')).not.toExist();
 
       // This is an activation event, triggering it will cause the package to be
