@@ -6,8 +6,7 @@
   "keywords": [],
   "activationHooks": [
     "atom-workspace:rubber-ducky3:encourage",
-    "atom-workspace:rubber-ducky3:respond",
-    "atom-workspace:rubber-ducky3:draw"
+    "atom-workspace:rubber-ducky3:respond"
   ],
   "repository": "https://github.com/kmjch/rubber-ducky3",
   "license": "MIT",
