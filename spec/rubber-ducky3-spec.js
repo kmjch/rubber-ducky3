@@ -15,58 +15,75 @@ describe('RubberDucky3', () => {
     activationPromise = atom.packages.activatePackage('rubber-ducky3');
   });
 
-  describe('when the rubber-ducky3:respond event is triggered', () => {
+  describe('when rubber-ducky3:draw is triggered', () => {
     it('inserts some text', () => {
-      // Before the activation event, there may not be any text
-      expect(workspaceElement.querySelector('.rubber-ducky3')).not.toExist();
-
       // This is an activation event, triggering it will cause the package to be
       // activated.
-      atom.commands.dispatch(workspaceElement, 'rubber-ducky3:respond');
-
-      waitsForPromise(() => {
-        return activationPromise;
-      });
+      atom.commands.dispatch(workspaceElement, 'rubber-ducky3:draw');
 
       runs(() => {
-        expect(workspaceElement.querySelector('.rubber-ducky3')).toExist();
-
-        let rubberDucky3Element = workspaceElement.querySelector('.rubber-ducky3');
-        expect(rubberDucky3Element).toExist();
-
-        let rubberDucky3Panel = atom.workspace.panelForItem(rubberDucky3Element);
-        expect(rubberDucky3Panel.isVisible()).toBe(true);
-        atom.commands.dispatch(workspaceElement, 'rubber-ducky3:respond');
-        expect(rubberDucky3Panel.isVisible()).toBe(false);
-      });
-    });
-
-    it('hides and shows the view', () => {
-      // This test shows you an integration test testing at the view level.
-
-      // Attaching the workspaceElement to the DOM is required to allow the
-      // `toBeVisible()` matchers to work. Anything testing visibility or focus
-      // requires that the workspaceElement is on the DOM. Tests that attach the
-      // workspaceElement to the DOM are generally slower than those off DOM.
-      jasmine.attachToDOM(workspaceElement);
-
-      expect(workspaceElement.querySelector('.rubber-ducky3')).not.toExist();
-
-      // This is an activation event, triggering it causes the package to be
-      // activated.
-      atom.commands.dispatch(workspaceElement, 'rubber-ducky3:respond');
-
-      waitsForPromise(() => {
-        return activationPromise;
+        let editor
+        if (editor = atom.workspace.getActiveTextEditor()) {
+          let curPos = editor.getCursorScreenPosition().toArray();
+          expect(editor.lineTextForBufferRow(curPos[0])).toContain("draw");
+        }
       });
 
-      runs(() => {
-        // Now we can test for view visibility
-        let rubberDucky3Element = workspaceElement.querySelector('.rubber-ducky3');
-        expect(rubberDucky3Element).toBeVisible();
-        atom.commands.dispatch(workspaceElement, 'rubber-ducky3:respond');
-        expect(rubberDucky3Element).not.toBeVisible();
-      });
     });
   });
+
+  // describe('when the rubber-ducky3:respond event is triggered', () => {
+  //   it('inserts some text', () => {
+  //     // Before the activation event, there may not be any text
+  //     expect(workspaceElement.querySelector('.rubber-ducky3')).not.toExist();
+  //
+  //     // This is an activation event, triggering it will cause the package to be
+  //     // activated.
+  //     atom.commands.dispatch(workspaceElement, 'rubber-ducky3:respond');
+  //
+  //     waitsForPromise(() => {
+  //       return activationPromise;
+  //     });
+  //
+  //     runs(() => {
+  //       expect(workspaceElement.querySelector('.rubber-ducky3')).toExist();
+  //
+  //       let rubberDucky3Element = workspaceElement.querySelector('.rubber-ducky3');
+  //       expect(rubberDucky3Element).toExist();
+  //
+  //       let rubberDucky3Panel = atom.workspace.panelForItem(rubberDucky3Element);
+  //       expect(rubberDucky3Panel.isVisible()).toBe(true);
+  //       atom.commands.dispatch(workspaceElement, 'rubber-ducky3:respond');
+  //       expect(rubberDucky3Panel.isVisible()).toBe(false);
+  //     });
+  //   });
+  //
+  //   it('hides and shows the view', () => {
+  //     // This test shows you an integration test testing at the view level.
+  //
+  //     // Attaching the workspaceElement to the DOM is required to allow the
+  //     // `toBeVisible()` matchers to work. Anything testing visibility or focus
+  //     // requires that the workspaceElement is on the DOM. Tests that attach the
+  //     // workspaceElement to the DOM are generally slower than those off DOM.
+  //     jasmine.attachToDOM(workspaceElement);
+  //
+  //     expect(workspaceElement.querySelector('.rubber-ducky3')).not.toExist();
+  //
+  //     // This is an activation event, triggering it causes the package to be
+  //     // activated.
+  //     atom.commands.dispatch(workspaceElement, 'rubber-ducky3:respond');
+  //
+  //     waitsForPromise(() => {
+  //       return activationPromise;
+  //     });
+  //
+  //     runs(() => {
+  //       // Now we can test for view visibility
+  //       let rubberDucky3Element = workspaceElement.querySelector('.rubber-ducky3');
+  //       expect(rubberDucky3Element).toBeVisible();
+  //       atom.commands.dispatch(workspaceElement, 'rubber-ducky3:respond');
+  //       expect(rubberDucky3Element).not.toBeVisible();
+  //     });
+  //   });
+  // });
 });
